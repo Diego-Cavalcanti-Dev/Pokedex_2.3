@@ -94,7 +94,9 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
   }
 
   Widget buildContent() {
-    final imageUrl = pokemon?['sprites']?['front_default'];
+    final imageUrl =
+        pokemon?['sprites']?['other']?['official-artwork']?['front_default'] ??
+        pokemon?['sprites']?['front_default'];
     final abilities = pokemon?['abilities'] ?? [];
     final types = pokemon?['types'] ?? [];
 
@@ -102,7 +104,8 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          if (imageUrl != null) Image.network(imageUrl, height: 160),
+          if (imageUrl != null)
+            Image.network(imageUrl, height: 220, fit: BoxFit.contain),
 
           const SizedBox(height: 16),
 

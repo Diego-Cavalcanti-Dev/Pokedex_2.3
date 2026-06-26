@@ -8,7 +8,7 @@ class PokemonService {
   // Busca os primeiros 20 Pokémons
   Future<List<dynamic>> getPokemons() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl?limit=20'));
+      final response = await http.get(Uri.parse('$baseUrl?limit=200'));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);

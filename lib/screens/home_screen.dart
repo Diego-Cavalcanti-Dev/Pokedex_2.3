@@ -76,15 +76,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Pokédex',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         automaticallyImplyLeading: false,
       ),
       body: carregando
@@ -98,8 +98,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: InputDecoration(
                       hintText: 'Buscar Pokémon...',
                       prefixIcon: const Icon(Icons.search),
+                      filled: true,
+                      fillColor: Theme.of(context).colorScheme.surfaceVariant,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).dividerColor,
+                        ),
                       ),
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16,
@@ -129,10 +134,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                 contentPadding: const EdgeInsets.all(12),
                                 leading: CircleAvatar(
                                   radius: 28,
-                                  backgroundColor: Colors.red.shade100,
-                                  child: const Icon(
-                                    Icons.catching_pokemon,
-                                    color: Colors.red,
+                                  backgroundColor: Theme.of(
+                                    context,
+                                  ).colorScheme.primaryContainer,
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png',
+                                      width: 36,
+                                      height: 36,
+                                      fit: BoxFit.contain,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                            return Icon(
+                                              Icons.catching_pokemon,
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.primary,
+                                            );
+                                          },
+                                    ),
                                   ),
                                 ),
                                 title: Text(

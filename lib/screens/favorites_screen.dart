@@ -47,15 +47,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Meus Favoritos',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         automaticallyImplyLeading: false,
       ),
       body: _isLoading
@@ -80,10 +80,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       vertical: 6,
                     ),
                     child: ListTile(
-                      leading: const Icon(Icons.favorite, color: Colors.red),
+                      leading: Icon(
+                        Icons.favorite,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
                       title: Text(
                         pokemonName.toUpperCase(),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).textTheme.titleMedium?.color,
+                        ),
                       ),
                       subtitle: const Text('Toque para ver detalhes'),
                       trailing: IconButton(
